@@ -1,0 +1,20 @@
+version: 1.0
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "Installing Dependencies"
+      - npm install
+  build:
+    commands:
+      - echo "Building Application"
+      - npm run build
+  post_build:
+    commands:
+      - echo "Build Completed On 'date'"
+      - mkdir -p deploy
+      - cp -r * deploy/
+      - cp appspec.yaml deploy/
+      - cp -r scripts/ deploy/scripts
